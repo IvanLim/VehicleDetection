@@ -117,7 +117,7 @@ I also gave **Haar Cascades** a try, but the training time was too long. I tried
 
 ### Sliding Window
 
-A simple 64x64 sliding window was used to slide across the bottom region of the image (where we expect cars to be), progressing 16 pixels every step. At each point, an image patch is obtained, and features are extracted and a feature vector is built (see previous section on Feature Extraction for details). This is then fed into the classifier, which determines if the image is a car or not, and the confidence level associated with it.
+The method described in the lectures seems to work quite well. I will describe it here. A simple 64x64 sliding window was used to slide across the bottom region of the image (where we expect cars to be), progressing 16 pixels every step. At each point, an image patch is obtained, and features are extracted and a feature vector is built (see previous section on Feature Extraction for details). This is then fed into the classifier, which determines if the image is a car or not, and the confidence level associated with it.
 
 ### HOG Subsampling
 
