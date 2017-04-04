@@ -6,7 +6,7 @@
 - Perform a Histogram of Oriented Gradients (HOG) feature extraction on a labeled training set of images and train a classifier Linear SVM classifier
 - Apply a color transform and add additional features (binned color features, histograms of color, canny edges) to the feature vector
 - Implement a sliding-window technique and use a trained classifier to search for vehicles in images.
-- Run the pipeline on a video stream **project\_video.mp** and create a heat map of recurring detections frame by frame to reject outliers and follow detected vehicles.
+- Run the pipeline on a video stream **project\_video.mp4** and create a heat map of recurring detections frame by frame to reject outliers and follow detected vehicles.
 - Estimate bounding boxes for vehicles detected and draw them on the image.
 
 This project is graded according to the criteria in the [project rubric](https://review.udacity.com/#!/rubrics/513/view).
