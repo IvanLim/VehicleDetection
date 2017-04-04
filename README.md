@@ -67,7 +67,7 @@ The feature vector is extracted via the following steps:
 
 We start with a **64x64** image, and convert it from **RGB** to the **YCrCb colour space**. This seems to be best suited for feature detection.
 
-Next, we calculate a **Histogram of Oriented Gradients** from the image using sklearn&#39;s **hog()** function. The hog calculation is done with **9 orientation bins** , **4 pixels per cell** , and **2 cells per block**. These numbers were selected because they produced better performance (the accuracy did not vary much when changing these numbers by small amounts). The HOGs were also calculated across **all 3 channels**.
+Next, we calculate a **Histogram of Oriented Gradients** from the image using skimage&#39;s **hog()** function. The hog calculation is done with **9 orientation bins** , **4 pixels per cell** , and **2 cells per block**. These numbers were selected because they produced better performance (the accuracy did not vary much when changing these numbers by small amounts). The HOGs were also calculated across **all 3 channels**.
 
 ![Original image](report/original.png "Original image")
 
@@ -96,7 +96,7 @@ so after scaling, a value X in the feature vector just says **I am X standard de
 
 ### Note on Previous (failed) Attempts
 
-While trying to speed things up, I tried both the **OpenCV version of HOG** , and **Haar Cascades**. For the OpenCV HOG, there was a significant speed boost for HOG feature extraction (about 30x over the SKLearn&#39;s HOG implementation). However, it produced a collapsed vector, which means that I could not do subsampling, and had to call the function for every window. This was ultimately less efficient that extracting the HOG features once, and subsampling the results.
+While trying to speed things up, I tried both the **OpenCV version of HOG** , and **Haar Cascades**. For the OpenCV HOG, there was a significant speed boost for HOG feature extraction (about 30x over the skimage&#39;s HOG implementation). However, it produced a collapsed vector, which means that I could not do subsampling, and had to call the function for every window. This was ultimately less efficient that extracting the HOG features once, and subsampling the results.
 
 I also gave **Haar Cascades** a try, but the training time was too long. I tried training my own, and after a DAY, I still had not finished training a single stage, and the full training process would need 20 stages, which means I would need almost a month of training, which is too long. As a workaround, I used the pre-trained haar cascade classifiers from [this repository](https://github.com/abhi-kumar/CAR-DETECTION). Despite being blazingly fast, it could not detect the black car in the project video, and the detection accuracy on the white car was somewhat inconsistent. I decided to drop it, unless OpenCV provides a GPU accelerated Haar cascade training in the future to cut down training time (currently it&#39;s CPU based).
 
@@ -108,7 +108,7 @@ The method described in the lectures seems to work quite well. I will describe i
 
 ### HOG Subsampling
 
-Because sklearn&#39;s hog() function is an expensive operation, one minor optimization would be to only calculate the HOG for the entire search region **once**. After that, the hog output is subsampled to get the HOGs for a given 64x64 image patch. This is a lot more efficient than recalculating the hog for every window.
+Because skimage&#39;s hog() function is an expensive operation, one minor optimization would be to only calculate the HOG for the entire search region **once**. After that, the hog output is subsampled to get the HOGs for a given 64x64 image patch. This is a lot more efficient than recalculating the hog for every window.
 
 ## Smoothing and Filtering
 
@@ -142,6 +142,6 @@ As an extra, the image pipeline and classes from the [Advanced Lane Line Detecti
 
 If you look at the project video, the bounding boxes around the cars can sometimes be much larger compared to the car. I spent time tweaking the parameters for better results, but the alternative would have been stronger filtering and smaller bounding boxes. Between a larger bounding box (causing the car the slow down earlier), and a smaller bounding box (an accident might occur), I chose the safer option.
 
-The Haar Cascade Classifier was really fast, it is a pity that it takes such a long time to train it. OpenCV&#39;s hog function was also about 30x faster than the sklearn version as well, but the fact that it produced a collapsed vector made it impossible to subsample so the performance gain isn&#39;t there.
+The Haar Cascade Classifier was really fast, it is a pity that it takes such a long time to train it. OpenCV&#39;s hog function was also about 30x faster than the skimage version as well, but the fact that it produced a collapsed vector made it impossible to subsample so the performance gain isn&#39;t there.
 
 The current solution also does not detect overlapping cars properly. They just blend into a giant blob. This would be really bad news in the event that the driver is stuck in a bumper-to-bumper traffic jam across multiple lanes.
