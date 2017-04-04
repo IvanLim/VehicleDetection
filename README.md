@@ -88,11 +88,11 @@ The final feature was edges detected using **Canny edge detection**. OpenCV&#39;
 
 The features were then concatenated into a final feature vector, and scaled using **sklearn&#39;s StandardScaler()**. The sklearn documentation says it &quot;Standardizes features by removing the mean and scaling to unit variance&quot;. Which sounds fancy, but really we&#39;re only doing a few things:
 
-- calculating the **mean** , and the **standard deviation** from the data
+- calculating the **mean** and the **standard deviation** from the data
 - **subtracting the mean** from every element so each value now represents the **distance from the average**
 - **dividing by the standard deviation**
 
-so after scaling, a value X in the feature vector just says **I am X standard deviations from the my average**. The scale of the data (whether it&#39;s in the 10&#39;s or the 1000&#39;s) no longer matters. Our feature vector is now standardized.
+so after scaling, a value X in the feature vector just says &#39;**I am X standard deviations from the my average**&#39;. The scale of the data (whether it&#39;s in the 10&#39;s or the 1000&#39;s) no longer matters. Our feature vector is now standardized.
 
 ### Note on Previous (failed) Attempts
 
