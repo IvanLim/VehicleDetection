@@ -83,19 +83,22 @@ We start with a **64x64** image, and convert it from **RGB** to the **YCrCb colo
 
 Next, we calculate a **Histogram of Oriented Gradients** from the image using sklearn&#39;s **hog()** function. The hog calculation is done with **9 orientation bins** , **4 pixels per cell** , and **2 cells per block**. These numbers were selected because they produced better performance (the accuracy did not vary much when changing these numbers by small amounts). The HOGs were also calculated across **all 3 channels**.
 
-[Normal image], [HOG bins]
+![Original image](report/original.png "Original image")
+
+![HOG image](report/hog_image.png "HOG image")
+
 
 Another useful feature to extract was the **spatial binning of colour** , which is a fancy term for downsampling the image and using the pixels as a feature (since each pixel now represents a group of pixels in the higher resolution image).
 
-[Normal image], [Downsampled image]
+![Spatial binning of colour](report/spatial_binning_of_colour.png "Spatial binning of colour")
 
 **Colour histograms** were also calculated and used as a feature. Each channel is fed into numpy&#39;s **histogram()** function, and the final results are concatenated into a single vector.
 
-[Y Histogram][Cr Histogram][Cb Histogram]
+![Histogram of colours](report/histogram_of_colour.png "Histogram of colours")
 
 The final feature was edges detected using **Canny edge detection**. OpenCV&#39;s **canny()** function was used on the Y (Greyscale) channel of the image and thresholded between **80** and **100**.
 
-[Normal image][Canny edges]
+![Canny edges](report/canny_edges.png "Canny edges")
 
 The features were then concatenated into a final feature vector, and scaled using **sklearn&#39;s StandardScaler()**. The sklearn documentation says it &quot;Standardizes features by removing the mean and scaling to unit variance&quot;. Which sounds fancy, but really we&#39;re only doing a few things:
 
@@ -133,13 +136,13 @@ Wrapping the LinearSVC() classifier inside a CalibratedClassifierCV() gives me a
 
 Initial detections are drawn onto a blank image, forming a heat map over time. To smooth things out, I average the latest heat map with the heat map from the previous frame (if available). A threshold is applied to weed out weak detections. A list of bounding boxes covering the &#39;hot&#39; areas are then extracted from this heat map.
 
-[Heat map example]
+![Heat map](report/heat_map.png "Heat map")
 
 ### Filtering and averaging
 
 The detected bounding boxes are then collected over 8 frames, and if a bounding box only shows up in 3 out of the 8 frames, then it&#39;s likely to be a false positive, so we drop it. The remaining bounding boxes are then averaged to get the final results.
 
-
+![Final result](report/final_result.png "Final result")
 
 ## Discussion
 
