@@ -57,7 +57,7 @@ The training code only runs when it is needed. If a trained classifier already e
 
 This is handled in **DatasetManager.py.**
 
-Training data consists of a collection of **64x64 Vehicle** and **Non-Vehicle** images, taken from the GTI and KITTI datasets. Given the number of images, and the possibility that the datasets might reach several GB in size, I wrote generators to load the data in batches. A portion of the KITTI dataset is also kept as a** test set** to make sure we can catch the classifier if it overfits.
+Training data consists of a collection of **64x64 Vehicle** and **Non-Vehicle** images, taken from the GTI and KITTI datasets. Given the number of images, and the possibility that the datasets might reach several GB in size, I wrote generators to load the data in batches. A portion of the KITTI dataset is also kept as a **test set** to make sure we can catch the classifier if it overfits.
 
 ### Feature Extraction
 
