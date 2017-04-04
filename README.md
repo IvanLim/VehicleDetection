@@ -142,7 +142,7 @@ Initial detections are drawn onto a blank image, forming a heat map over time. T
 
 The detected bounding boxes are then collected over 8 frames, and if a bounding box only shows up in 3 out of the 8 frames, then it&#39;s likely to be a false positive, so we drop it. The remaining bounding boxes are then averaged to get the final results.
 
-
+![Final result](report/final_result.png "Final result")
 
 ## Discussion
 
