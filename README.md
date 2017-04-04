@@ -83,7 +83,10 @@ We start with a **64x64** image, and convert it from **RGB** to the **YCrCb colo
 
 Next, we calculate a **Histogram of Oriented Gradients** from the image using sklearn&#39;s **hog()** function. The hog calculation is done with **9 orientation bins** , **4 pixels per cell** , and **2 cells per block**. These numbers were selected because they produced better performance (the accuracy did not vary much when changing these numbers by small amounts). The HOGs were also calculated across **all 3 channels**.
 
-[Normal image], [HOG bins]
+![Original image](https://github.com/IvanLim/vehicle-detection/report/original.png "Original image")
+
+![HOG image](https://github.com/IvanLim/vehicle-detection/report/hog_image.png "HOG image")
+
 
 Another useful feature to extract was the **spatial binning of colour** , which is a fancy term for downsampling the image and using the pixels as a feature (since each pixel now represents a group of pixels in the higher resolution image).
 
