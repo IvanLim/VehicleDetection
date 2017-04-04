@@ -37,19 +37,6 @@ To run the main program (which processes and builds the project video), you can 
 
 **python VehicleDetection.py**
 
-### Testing support functions
-
-The support functions can also be tested by running:
-
-- **python CameraCalibration.py**
-- **python Preprocessing.py**
-- **python LaneAnalysis.py**
-- **python DatasetManager.py**
-- **python FeatureExtractor.py**
-- **python ImageSearcher.py**
-- **python InterFrameLogic.py**
-- **python Standardizer.py**
-
 ## Lane Detection Image Processing Pipeline
 
 ### Quick note on Lane Detection
