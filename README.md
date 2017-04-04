@@ -30,7 +30,6 @@ The project has two separate functions, and contain the following files:
 - **Preprocessing.py** contains image pre-processing support functions
 - **LaneAnalysis.py** contains the analysis support functions to find / fit the lanes
 - **project\_video.mp4** is a video identifying the lanes, distance from center, and curvature radii
-- **writeup\_report.pdf** is a report summarizing the project results
 
 ### Running the program
 
@@ -94,7 +93,7 @@ Another useful feature to extract was the **spatial binning of colour** , which 
 
 **Colour histograms** were also calculated and used as a feature. Each channel is fed into numpy&#39;s **histogram()** function, and the final results are concatenated into a single vector.
 
-![Histogram of colours](report/histogram_of_colour.png "Histogram of colours")
+![Histograms of colour](report/histograms_of_colour.png "Histograms of colour")
 
 The final feature was edges detected using **Canny edge detection**. OpenCV&#39;s **canny()** function was used on the Y (Greyscale) channel of the image and thresholded between **80** and **100**.
 
@@ -143,6 +142,12 @@ Initial detections are drawn onto a blank image, forming a heat map over time. T
 The detected bounding boxes are then collected over 8 frames, and if a bounding box only shows up in 3 out of the 8 frames, then it&#39;s likely to be a false positive, so we drop it. The remaining bounding boxes are then averaged to get the final results.
 
 ![Final result](report/final_result.png "Final result")
+
+### Adding lane line detection
+
+As an extra, the image pipeline and classes from the [Advanced Lane Line Detection project](https://github.com/IvanLim/advanced-lane-line) were imported into this project, allowing us to detect both the lanes and the vehicles. 
+
+![Final result with lane lines](report/final_result_w_lane_lines.png "Final result with lane lines")
 
 ## Discussion
 
